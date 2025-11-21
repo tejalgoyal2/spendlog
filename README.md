@@ -1,49 +1,88 @@
 # SpendLog 💸
 
-_Indie-grade expense clarity in under 10 seconds._
+> **Indie-grade expense clarity. From rough notes to structured data in seconds.**
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?logo=google&logoColor=white)
+![Gemini AI](https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=google&logoColor=white)
 
 ---
 
-## The Problem
-Most expense trackers are either clunky, over-designed, or gated behind subscriptions. I just wanted a lightweight way to see how much of my flow went to **Needs** (rent, groceries, survival) versus **Wants** (Lego drops, shiny gadgets). Manual spreadsheets weren’t sticking, and app store options felt like bloatware.
+## 🧐 The Philosophy
+Most expense trackers are designed for accountants, not humans. They demand five fields just to log a coffee.  
+**SpendLog** is built on two core beliefs:
 
-## The Solution
-SpendLog is a personal PWA that lets me brain dump rough notes like “spent 50 on lego” and lets Google Gemini convert that chaos into structured expense data. It stays self-hosted, fast, and honest about where the money actually goes.
+1. **Friction kills consistency.** I should be able to text myself “spent 15 on burger” and move on.
+2. **Needs vs. Wants matters most.** Knowing I spent $2K is useless; knowing $500 went to *Lego* (Want) vs. $1.5K to *Rent* (Need) is actionable.
+
+## ⚡ How It Works
+1. **Dump** – Paste rough notes like _“Bought a rivet set for 30 and paid 50 for electricity.”_
+2. **Parse** – SpendLog sends it to **Google Gemini Flash (gemini-1.5-flash)**.
+3. **Structure** – AI extracts item, amount, date, category, and Need/Want type.
+4. **Store** – Clean data lands in Supabase, ready for insights.
 
 ## Features
-- 🧠 **AI-powered parsing** – paste messy sentences, skip the forms.
-- 🗂️ **Smart categorization** – auto labels every line as a Need or Want.
-- 🔐 **Privacy-first** – run it on your own stack, keep the data yours.
-- 📲 **PWA shell** – pin it on your phone, log spending anywhere.
+- 🧠 **AI-powered parsing** – No manual forms, just natural language.
+- 🗂️ **Smart categorization** – Need vs. Want tags generated automatically.
+- 🔐 **Privacy-first** – Self-hosted stack keeps your money trail yours.
+- 📲 **PWA-ready** – Pin it on your phone for on-the-go logging.
 
-## Getting Started
-Clone and bootstrap your own SpendLog in minutes.
+## 🛠️ Tech Stack
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + shadcn/ui
+- **Database:** Supabase (PostgreSQL)
+- **Intelligence:** Google Gemini API (`gemini-1.5-flash`)
+- **Deployment:** Vercel / PWA
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/tejalgoyal/spendlog.git
 cd spendlog
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
 ```
 
-Create `.env.local` and add:
+### 3. Set up environment variables
 
-```
-GEMINI_API_KEY=your-google-gemini-key
+Create a `.env.local` file in the project root:
+
+```env
+# Google AI Studio
+GEMINI_API_KEY=your_gemini_key_here
+
+# Supabase (optional until Phase 3)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-Run the dev server:
+### 4. Run the app
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:3000` and start logging.
+Open `http://localhost:3000` to start logging.
+
+## 🗺️ Roadmap
+- [x] **Phase 1:** Project setup & AI parsing logic
+- [ ] **Phase 2:** Input UI & tables
+- [ ] **Phase 3:** Supabase persistence
+- [ ] **Phase 4:** Needs vs. Wants visualizations
+- [ ] **Phase 5:** PWA install flow (Add to Home Screen)
+
+---
+
+_Built with ☕ and code by Tejal._
 
 ---
 
