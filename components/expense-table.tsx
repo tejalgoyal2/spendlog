@@ -1,13 +1,19 @@
 import React from 'react';
 
-export function ExpenseTable() {
-    // Placeholder data for visualization
-    const expenses = [
-        { id: 1, date: '2023-10-27', category: 'Food', description: 'Lunch at Joe\'s', amount: 15.00 },
-        { id: 2, date: '2023-10-26', category: 'Transport', description: 'Uber to work', amount: 24.50 },
-        { id: 3, date: '2023-10-25', category: 'Utilities', description: 'Electric Bill', amount: 120.00 },
-    ];
+export interface Expense {
+    id?: string | number;
+    item: string;
+    amount: number;
+    category: string;
+    type: "Need" | "Want";
+    date: string;
+}
 
+interface ExpenseTableProps {
+    expenses: Expense[];
+}
+
+export function ExpenseTable({ expenses }: ExpenseTableProps) {
     return (
         <div className="w-full max-w-4xl overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
             <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
@@ -20,18 +26,34 @@ export function ExpenseTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map((expense) => (
-                        <tr key={expense.id} className="bg-white dark:bg-zinc-950 border-b dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900">
-                            <td className="px-6 py-4">{expense.date}</td>
-                            <td className="px-6 py-4">
-                                <span className="px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-xs">
-                                    {expense.category}
-                                </span>
+                    {expenses.length === 0 ? (
+                        <tr>
+                            <td colSpan={4} className="px-6 py-8 text-center text-zinc-500 dark:text-zinc-400">
+                                No expenses added yet.
                             </td>
-                            <td className="px-6 py-4 font-medium text-zinc-900 dark:text-white">{expense.description}</td>
-                            <td className="px-6 py-4 text-right">${expense.amount.toFixed(2)}</td>
                         </tr>
-                    ))}
+                    ) : (
+                        expenses.map((expense, index) => (
+                            <tr key={expense.id || index} className="bg-white dark:bg-zinc-950 border-b dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900">
+                                <td className="px-6 py-4">{expense.date}</td>
+                                <td className="px-6 py-4">
+                                    <div className="flex gap-2">
+                                        <span className="px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-xs">
+                                            {expense.category}
+                                        </span>
+                                        <span className={`px-2 py-1 rounded-full text-xs ${expense.type === 'Need'
+                                            ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400'
+                                            : 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400'
+                                            }`}>
+                                            {expense.type}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4 font-medium text-zinc-900 dark:text-white">{expense.item}</td>
+                                <td className="px-6 py-4 text-right">${expense.amount.toFixed(2)}</td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
         </div>
