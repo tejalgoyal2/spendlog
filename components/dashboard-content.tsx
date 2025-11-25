@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ExpenseForm } from "@/components/expense-form";
 import { ExpenseTable, Expense } from "@/components/expense-table";
+import { SpendingChart } from "@/components/spending-chart";
 import { createClient } from "@/utils/supabase/client";
 
 export function DashboardContent() {
@@ -34,7 +35,8 @@ export function DashboardContent() {
             <div className="md:col-span-1">
                 <ExpenseForm onExpenseAdded={handleExpenseAdded} />
             </div>
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 space-y-8">
+                <SpendingChart expenses={expenses} />
                 <ExpenseTable expenses={expenses} />
             </div>
         </div>
