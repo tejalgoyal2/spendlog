@@ -39,6 +39,13 @@ export function ExpenseForm({ onExpenseAdded }: ExpenseFormProps) {
                 setTimeout(() => setFunnyComment(null), 5000);
             }
 
+            // Check if it's a valid expense
+            if (!parsedExpenses[0]?.is_expense) {
+                setIsLoading(false);
+                setNotes('');
+                return;
+            }
+
             // 2. Save to Supabase
             const supabase = createClient();
 
@@ -115,9 +122,9 @@ export function ExpenseForm({ onExpenseAdded }: ExpenseFormProps) {
                         {isLoading ? 'Processing...' : 'Add Expense'}
                     </button>
                     {funnyComment && (
-                        <p className="text-sm italic text-amber-500 text-center mt-2 font-medium">
-                            &quot;{funnyComment}&quot;
-                        </p>
+                        <div className="text-lg font-medium text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-800 py-3 px-4 rounded-lg mt-4 text-center">
+                            {funnyComment}
+                        </div>
                     )}
                 </form>
             </div>
