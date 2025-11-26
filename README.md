@@ -1,69 +1,77 @@
 # WalletRIP 💸
-The AI-powered expense tracker that roasts your bad financial decisions.
 
-## 🧐 The Philosophy
-Most expense trackers are boring spreadsheets. WalletRIP is built on three core beliefs:
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Gemini AI](https://img.shields.io/badge/Gemini_AI-8E75B2?style=for-the-badge&logo=google-bard&logoColor=white)
 
-1. **Friction kills consistency.** I should be able to type "Starbucks 15" and be done.
-2. **Needs vs. Wants.** Knowing I spent $2K is useless. Knowing $500 went to Lego (Want) vs. $1.5K to Rent (Need) is actionable.
-3. **Shame is a motivator.** If I buy something stupid, the AI should roast me in Hinglish.
+> **Stop lying to yourself about where the money went.**
 
-## ⚡ How It Works
-1. **Dump** – Type naturally: "Spent 50 cad on pizza"
-2. **Parse** – Google Gemini AI extracts the data and context.
-3. **Roast** – The AI detects if it's a "Want" and generates a sarcastic comment (e.g., "Bhai, ghar ka khaana kha le").
-4. **Visualize** – Data lands in Supabase and updates your "Lego vs. Life" charts instantly.
+## 🔗 Live Demo
+[walletRIP.vercel.app](https://walletrip.vercel.app)
 
-## ✨ Features
-- **🧠 Natural Language Parsing** – No forms. Just talk to it.
-- **🤬 Hinglish Roasts** – Context-aware sarcasm based on what you buy.
-- **📊 Visual Analytics** – Donut charts to track Needs vs. Wants ratios.
-- **🔐 Callsign Auth** – Privacy-first. No email required. Just a username & invite code.
-- **🛡️ Military-Grade Security** – Row Level Security (RLS) ensures only YOU see your data.
-- **📲 PWA Ready** – Installs on iPhone/Android as a native app.
+## 🧐 The Vibe
+Most expense trackers are boring spreadsheets that feel like homework. **WalletRIP** is your wallet's conscience. It doesn't just track your spending; it judges it.
 
-## 🛠️ Tech Stack
+It’s built for speed, privacy, and brutal honesty.
+
+## ✨ Key Features
+
+### 🧠 The AI Brain
+Forget forms. Just type naturally: *"Spent 50 on pizza"* or *"Uber to work 25"*. The integrated AI parses the context, categorizes it, and logs it instantly. No local processing—everything happens in the cloud for maximum efficiency.
+
+### ⚖️ The Sarcastic Judge
+If you spend money on "Needs" (Rent, Groceries), it stays quiet. If you blow cash on "Wants" (Lego, overpriced coffee), it delivers a sarcastic reality check. It keeps you humble.
+
+### 👻 Ghost Protocol Auth
+Privacy is paramount.
+- **No Email Required**: We don't want your spam address.
+- **No Phone Numbers**: We don't want to text you.
+- **Callsign Access**: Just pick a unique **Callsign** (username) and a **Secret Code**.
+- **Universal Sync**: Access your data securely from any device—Mobile, Tablet, or Desktop.
+
+### 🛡️ Military-Grade Security
+Built on **Supabase** with strict **Row Level Security (RLS)**. Your financial data is isolated, encrypted, and visible *only* to you.
+
+## 👥 How to Join
+This is a private instance (I'm broke and can't pay for everyone's API usage), but you can join if you have the secret invite code.
+
+1. **Go to [walletRIP.vercel.app](https://walletrip.vercel.app)**
+2. **Click "Sign Up"**
+3. **Choose a Callsign**: This is your unique username. Be creative.
+4. **Set a Secret Code**: Must be at least 6 characters. Don't forget it; there is no "Forgot Password" link.
+5. **Enter Invite Code**: You need the key `GEMINI2025` to enter.
+6. **Start Tracking**: Type your expenses and let the judgment begin.
+
+*Want to run your own instance? Follow the setup guide below.*
+
+## 🛠️ The Stack
 - **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + Framer Motion (Animations)
-- **Database**: Supabase (PostgreSQL + RLS)
+- **Database**: Supabase (PostgreSQL)
+- **Styling**: Tailwind CSS + Framer Motion
 - **Intelligence**: Google Gemini 1.5 Flash
-- **Charts**: Recharts
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Self-Host)
 
-### 1. Clone the repo
+### 1. Clone & Install
 ```bash
 git clone https://github.com/tejalgoyal/spendlog.git
 cd spendlog
-```
-
-### 2. Install dependencies
-```bash
 npm install
 ```
 
-### 3. Set up environment variables
-Create a `.env.local` file with your keys (Supabase & Gemini):
-
+### 2. Environment Setup
+Create a `.env.local` file:
 ```env
 GEMINI_API_KEY=...
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
-### 4. Run the app
+### 3. Run Locally
 ```bash
 npm run dev
 ```
 
-## 🗺️ Roadmap
-- [x] Phase 1: AI Parsing & Database Setup
-- [x] Phase 2: Secure "Callsign" Auth & RLS
-- [x] Phase 3: Visual Charts & Delete Functionality
-- [x] Phase 4: Hinglish Meme/Roast Engine
-- [ ] Phase 5: Gamification (Streak System)
-- [ ] Phase 6: Subscription Hunter
-
 ---
-Built with ☕ and anxiety by Tejal.
+Built with 🖤 and absolute chaos by **Tejal**.
