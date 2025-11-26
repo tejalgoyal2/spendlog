@@ -10,6 +10,9 @@
 ## 🔗 Live Demo
 [walletRIP.vercel.app](https://walletrip.vercel.app)
 
+![WalletRIP Demo](public/demo.gif)
+*(See below on how to add this GIF!)*
+
 ## 🧐 The Vibe
 Most expense trackers are boring spreadsheets that feel like homework. **WalletRIP** is your wallet's conscience. It doesn't just track your spending; it judges it.
 
@@ -22,6 +25,12 @@ Forget forms. Just type naturally: *"Spent 50 on pizza"* or *"Uber to work 25"*.
 
 ### ⚖️ The Sarcastic Judge
 If you spend money on "Needs" (Rent, Groceries), it stays quiet. If you blow cash on "Wants" (Lego, overpriced coffee), it delivers a sarcastic reality check. It keeps you humble.
+
+### 🔧 Under the Hood: The Engineering
+We don't just ask Gemini to "read this." We feed it a strict system prompt that enforces:
+1.  **JSON Schema Validation**: Ensures data is always clean for the database (no more "misc" categories).
+2.  **Context Injection**: The AI is told it's a "Sarcastic Canadian Accountant." It knows 50 CAD is a normal lunch but 500 CAD is a crime.
+3.  **Creative Temperature**: We dial up the creativity for the `funny_comment` field while keeping the `amount` and `date` fields strictly deterministic.
 
 ### 👻 Ghost Protocol Auth
 Privacy is paramount.
