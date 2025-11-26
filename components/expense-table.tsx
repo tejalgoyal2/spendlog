@@ -11,9 +11,16 @@ export interface Expense {
 
 interface ExpenseTableProps {
     expenses: Expense[];
+    onDelete: (id: string | number) => void;
 }
 
-export function ExpenseTable({ expenses }: ExpenseTableProps) {
+export function ExpenseTable({ expenses, onDelete }: ExpenseTableProps) {
+    const handleDelete = (id: string | number) => {
+        if (confirm("Delete this expense?")) {
+            onDelete(id);
+        }
+    };
+
     return (
         <div className="w-full max-w-4xl overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
             <div className="overflow-x-auto">
@@ -24,12 +31,13 @@ export function ExpenseTable({ expenses }: ExpenseTableProps) {
                             <th scope="col" className="px-6 py-3">Category</th>
                             <th scope="col" className="px-6 py-3">Description</th>
                             <th scope="col" className="px-6 py-3 text-right">Amount</th>
+                            <th scope="col" className="px-6 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {expenses.length === 0 ? (
                             <tr>
-                                <td colSpan={4} className="px-6 py-8 text-center text-zinc-500 dark:text-zinc-400">
+                                <td colSpan={5} className="px-6 py-8 text-center text-zinc-500 dark:text-zinc-400">
                                     No expenses added yet.
                                 </td>
                             </tr>
@@ -52,6 +60,19 @@ export function ExpenseTable({ expenses }: ExpenseTableProps) {
                                     </td>
                                     <td className="px-6 py-4 font-medium text-zinc-900 dark:text-white whitespace-normal break-words max-w-xs">{expense.item_name}</td>
                                     <td className="px-6 py-4 text-right">${expense.amount.toFixed(2)}</td>
+                                    <td className="px-6 py-4 text-right">
+                                        <button
+                                            onClick={() => expense.id && handleDelete(expense.id)}
+                                            className="text-red-500 hover:text-red-700 transition-colors"
+                                            title="Delete Expense"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M3 6h18"></path>
+                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                             ))
                         )}

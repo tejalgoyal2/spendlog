@@ -34,6 +34,18 @@ export function DashboardContent() {
         setExpenses((prev) => [...newExpenses, ...prev]);
     };
 
+    const handleDeleteExpense = async (id: string | number) => {
+        const supabase = createClient();
+        const { error } = await supabase.from('expenses').delete().eq('id', id);
+
+        if (error) {
+            console.error('Error deleting expense:', error);
+            alert('Failed to delete expense');
+        } else {
+            setExpenses((prev) => prev.filter((e) => e.id !== id));
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,7 +58,7 @@ export function DashboardContent() {
             </div>
             <div className="md:col-span-2 space-y-8">
                 <SpendingChart expenses={expenses} />
-                <ExpenseTable expenses={expenses} />
+                <ExpenseTable expenses={expenses} onDelete={handleDeleteExpense} />
             </div>
         </motion.div>
     );

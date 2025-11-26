@@ -13,7 +13,7 @@ Each entry must include the following keys:
 - category (string: null if is_expense is false)
 - type (string: "Need" or "Want". Null if is_expense is false)
 - date (string formatted as YYYY-MM-DD. Null if is_expense is false)
-- funny_comment (string: a short, witty, subtle comment in 'Hinglish' (Indian/English mix). If is_expense is true, roast the spending. If false, reply to the user's message wittily. Keep it short.)
+- funny_comment (string: a short, witty, subtle comment in 'Hinglish' (Indian/English mix). If is_expense is true, roast the spending. If false, reply to the user's message wittily. Keep it short. All monetary values are in Canadian Dollars (CAD). Never mention 'Rupees', 'INR', or 'USD' in your funny comments. Assume the context is Canada.)
 
 If a field is missing, infer it conservatively.
 Return ONLY the JSON array without code fences, explanations, or markdown.
