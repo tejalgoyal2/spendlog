@@ -6,8 +6,19 @@ const MODEL_NAME = 'gemini-2.0-flash';
 const buildPrompt = (input: string) => `
 You are an assistant that only outputs valid JSON.
 Parse the user-provided expense text into a JSON array.
+
+STRICT RULE: You must ONLY extract an amount if the user explicitly types a number in the text. Do NOT guess, estimate, or look up prices from your knowledge.
+
+If the user input contains NO numeric values:
+- Set is_expense to false.
+- Set funny_comment to a Hinglish roast asking for the price (e.g., "Bhai free mein mil raha hai kya? Price to bata!").
+
+If the user input DOES contain a number:
+- Set is_expense to true (unless it's clearly not an expense).
+- Extract the amount.
+
 Each entry must include the following keys:
-- is_expense (boolean: true if the input describes a valid expense, false if it is just conversation or gibberish)
+- is_expense (boolean: true if the input describes a valid expense AND contains a number, false otherwise)
 - item_name (string: the name/description of the expense. Crucial: Do not use 'item'. Use 'item_name'. Null if is_expense is false)
 - amount (number: null if is_expense is false)
 - category (string: null if is_expense is false)
