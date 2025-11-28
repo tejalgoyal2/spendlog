@@ -1,7 +1,6 @@
 import React from 'react';
 import { Expense } from './expense-table';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
-import { MicroCalendar } from './micro-calendar';
 
 interface StreakCounterProps {
     expenses: Expense[];
@@ -42,25 +41,14 @@ export function StreakCounter({ expenses }: StreakCounterProps) {
 
     const streak = calculateStreak();
 
-    // If no data at all, maybe don't show anything? 
-    // Or show calendar anyway? Let's show calendar anyway if there are expenses, 
-    // but the prompt implies replacing the strip.
-    // If expenses is empty, calendar will be empty.
+    if (streak === 0) return null;
 
     return (
-        <div className="flex items-start gap-4">
-            {/* Fire Badge */}
-            {streak > 0 && (
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 mt-1">
-                    <span className="text-lg animate-pulse">🔥</span>
-                    <span className="text-sm font-bold text-orange-600 dark:text-orange-400">
-                        {streak} Day Streak
-                    </span>
-                </div>
-            )}
-
-            {/* Micro Calendar */}
-            <MicroCalendar expenses={expenses} />
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20">
+            <span className="text-lg animate-pulse">🔥</span>
+            <span className="text-sm font-bold text-orange-600 dark:text-orange-400">
+                {streak} Day Streak
+            </span>
         </div>
     );
 }
