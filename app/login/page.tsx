@@ -96,7 +96,7 @@ export default function LoginPage() {
 
                 <div className="p-8">
                     <h2 className="text-2xl font-bold text-center mb-6 text-zinc-900 dark:text-zinc-100">
-                        {isSignUp ? 'Join SpendLog' : 'Welcome Back'}
+                        {isSignUp ? 'Join WalletRIP' : 'Welcome Back'}
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-4">

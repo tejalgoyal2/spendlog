@@ -78,7 +78,7 @@ This is a private instance (I'm broke and can't pay for everyone's API usage), b
 ### 1. Clone & Install
 ```bash
 git clone https://github.com/tejalgoyal2/WalletRIP.git
-cd spendlog
+cd WalletRIP
 npm install
 ```
 

@@ -20,7 +20,7 @@ export default async function Home() {
       <div className="w-full max-w-5xl space-y-8">
         <header className="flex flex-col gap-2 mb-12">
           <div className="flex items-center gap-2">
-            <h1 className="text-3xl font-bold tracking-tight">SpendLog Dashboard</h1>
+            <h1 className="text-3xl font-bold tracking-tight">WalletRIP Dashboard</h1>
             {isAdmin && <span className="text-2xl" title="Admin Access">👑</span>}
             <div className="ml-auto flex items-center gap-2">
               <a
