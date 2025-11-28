@@ -46,7 +46,7 @@ const stripCodeFences = (text: string) => {
 
 export async function POST(req: Request) {
   // 1. Security: Check Auth
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user }, error: authError } = await supabase.auth.getUser();
 
   if (authError || !user) {
