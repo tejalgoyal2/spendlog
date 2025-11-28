@@ -62,7 +62,7 @@ export function ExpenseTable({ expenses, onDelete }: ExpenseTableProps) {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 font-medium text-zinc-900 dark:text-white whitespace-normal break-words max-w-xs">{expense.item_name}</td>
-                                    <td className="px-6 py-4 text-right">${expense.amount.toFixed(2)}</td>
+                                    <td className="px-6 py-4 text-right">${expense.amount?.toFixed(2) ?? '0.00'}</td>
                                     <td className="px-6 py-4 text-right">
                                         <button
                                             onClick={() => expense.id && handleDelete(expense.id)}

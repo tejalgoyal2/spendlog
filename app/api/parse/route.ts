@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { createClient } from '@/utils/supabase/server';
 
 const MODEL_NAME = 'gemini-2.0-flash';
 
@@ -44,6 +45,17 @@ const stripCodeFences = (text: string) => {
 };
 
 export async function POST(req: Request) {
+  // 1. Security: Check Auth
+  const supabase = createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    return NextResponse.json(
+      { error: 'Unauthorized. Please log in.' },
+      { status: 401 }
+    );
+  }
+
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return NextResponse.json(
@@ -69,6 +81,10 @@ export async function POST(req: Request) {
     const raw = response.text();
     const cleaned = stripCodeFences(raw);
     const expenses = JSON.parse(cleaned);
+
+    if (!Array.isArray(expenses)) {
+      throw new Error('AI response was not a valid array.');
+    }
 
     // Fix missing date
     const today = new Date().toISOString().split('T')[0];
