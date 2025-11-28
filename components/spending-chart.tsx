@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Expense } from './expense-table';
+import { MonthlyRoast } from './monthly-roast';
 
 interface SpendingChartProps {
     expenses: Expense[];
@@ -31,7 +32,10 @@ export function SpendingChart({ expenses }: SpendingChartProps) {
 
     return (
         <div className="w-full p-4 bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-800">
-            <h2 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">Lego vs. Life Ratio</h2>
+            <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Lego vs. Life Ratio</h2>
+                <MonthlyRoast expenses={expenses} />
+            </div>
             <div className="h-[250px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
