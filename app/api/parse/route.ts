@@ -70,6 +70,14 @@ export async function POST(req: Request) {
     const cleaned = stripCodeFences(raw);
     const expenses = JSON.parse(cleaned);
 
+    // Fix missing date
+    const today = new Date().toISOString().split('T')[0];
+    expenses.forEach((exp: any) => {
+      if (exp.is_expense && !exp.date) {
+        exp.date = today;
+      }
+    });
+
     return NextResponse.json(expenses);
   } catch (error) {
     const message =
