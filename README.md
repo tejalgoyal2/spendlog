@@ -44,7 +44,13 @@ Built on **Supabase** with strict **Row Level Security (RLS)**. Your financial d
 ### 🎯 Zero-Hallucination Mode
 The AI is trained to *never guess prices*. If you say "I want a PS5", it won't log $500 automatically; it asks you for the price.
 
-## 👥 How to Join
+### � Install on Mobile (PWA)
+WalletRIP works best as a native app on your phone.
+- **iOS (iPhone)**: Open Safari -> Tap Share -> Tap "Add to Home Screen".
+- **Android**: Open Chrome -> Tap Menu (3 dots) -> Tap "Install App".
+
+
+## �👥 How to Join
 This is a private instance (I'm broke and can't pay for everyone's API usage), but you can join if you have an invite code.
 
 1. **Go to [walletRIP.vercel.app](https://walletrip.vercel.app)**
@@ -71,7 +77,7 @@ This is a private instance (I'm broke and can't pay for everyone's API usage), b
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/tejalgoyal/spendlog.git
+git clone https://github.com/tejalgoyal2/WalletRIP.git
 cd spendlog
 npm install
 ```
