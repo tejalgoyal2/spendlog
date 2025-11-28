@@ -66,7 +66,16 @@ export function MonthlyRoast({ expenses }: MonthlyRoastProps) {
                                         </div>
                                     ) : (
                                         <p className="text-lg font-medium text-zinc-800 dark:text-zinc-200 leading-relaxed">
-                                            "{roast}"
+                                            {roast?.split(/(\*[^*]+\*)/g).map((part, index) => {
+                                                if (part.startsWith('*') && part.endsWith('*')) {
+                                                    return (
+                                                        <span key={index} className="font-bold text-amber-600 dark:text-amber-500">
+                                                            {part.slice(1, -1)}
+                                                        </span>
+                                                    );
+                                                }
+                                                return part;
+                                            })}
                                         </p>
                                     )}
                                 </div>

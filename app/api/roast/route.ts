@@ -48,6 +48,8 @@ export async function POST(req: Request) {
         Analyze this list of expenses:
         ${expenseSummary}
 
+        CONTEXT: The user is in Canada. All amounts are in Canadian Dollars (CAD). Never use the Rupee symbol (₹). Use '$'. Even if speaking Hinglish, keep the currency Canadian.
+
         Write a short, sarcastic, funny 'Performance Review' in Hinglish (Indian/English mix). 
         Roast the user for their bad financial decisions, specifically pointing out 'Wants' or high amounts. 
         Keep it under 60 words. Be brutal but funny.
