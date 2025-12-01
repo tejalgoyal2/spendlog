@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import { createClient } from '@/utils/supabase/server';
 
 const MODEL_NAME = 'gemini-2.0-flash';
@@ -17,6 +17,13 @@ If the user input contains NO numeric values:
 If the user input DOES contain a number:
 - Set is_expense to true (unless it's clearly not an expense).
 - Extract the amount.
+
+CURRENCY RULE: The database ONLY stores Canadian Dollars (CAD). If the user inputs USD, INR, or EUR:
+- Convert it to CAD using approximate current rates (e.g., 1 USD = 1.4 CAD, 1 INR = 0.016 CAD).
+- Store the CONVERTED amount.
+- Append the original price to the item name (e.g., 'Freelancer (50 USD)').
+
+CATEGORIZATION RULE: Never return null for category or type. If the input is NSFW or questionable, categorize it as 'Adult' or 'Entertainment' and mark it as a 'Want'.
 
 Each entry must include the following keys:
 - is_expense (boolean: true if the input describes a valid expense AND contains a number, false otherwise)
@@ -74,7 +81,27 @@ export async function POST(req: Request) {
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+    const model = genAI.getGenerativeModel({
+      model: MODEL_NAME,
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+      ]
+    });
 
     const result = await model.generateContent(buildPrompt(body));
     const response = await result.response;
